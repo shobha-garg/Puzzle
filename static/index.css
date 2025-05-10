@@ -1,0 +1,186 @@
+:root {
+  --page-bg: #f8f9fa;
+  --container-bg: #ffffff;
+  --pieces-area-bg: #e9ecef;
+  --primary-accent: #00796b; /* Deep Teal */
+  --primary-accent-hover: #00695c;
+  --text-color: #343a40;
+  --border-color: #ced4da;
+  --dropzone-border-dashed: #adb5bd;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --completed-shadow: rgba(0, 0, 0, 0.2);
+  --font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: var(--page-bg);
+  color: var(--text-color);
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scroll if message is wide */
+}
+
+#title {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: var(--primary-accent);
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 2px var(--shadow-color);
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Added for .hidden transition */
+}
+
+#puzzle-container {
+  display: grid;
+  gap: 3px;
+  border: 1px solid var(--border-color);
+  background-color: var(--container-bg);
+  margin-bottom: 25px;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease-in-out, gap 0.3s ease-in-out;
+}
+
+.dropzone {
+  border: 2px dashed var(--dropzone-border-dashed);
+  background-color: var(--page-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+#pieces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 25px;
+  width: 90%;
+  max-width: 700px;
+  min-height: 150px;
+  padding: 15px;
+  background-color: var(--pieces-area-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  justify-content: center;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: opacity 0.5s ease, transform 0.5s ease, height 0.5s ease, padding 0.5s ease, margin-bottom 0.5s ease;
+}
+
+.piece {
+  border: 1px solid var(--border-color);
+  cursor: grab;
+  box-shadow: 0 2px 5px var(--shadow-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.piece:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+.piece:active {
+    cursor: grabbing;
+    transform: scale(1.08);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+#message {
+  font-size: 2.2em;
+  color: var(--primary-accent);
+  font-weight: 600;
+  display: none; /* Initially hidden */
+  opacity: 0;
+  text-align: center;
+  padding: 30px 40px;
+  background-color: var(--container-bg);
+  border: 1px solid var(--primary-accent);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Enhanced shadow for modal */
+  
+  /* Centering styles */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9); /* Start slightly smaller for pop effect */
+  z-index: 1000; /* Ensure it's on top of everything */
+  max-width: 90%;
+  width: auto; /* Auto width based on content */
+  min-width: 300px; /* Minimum width */
+
+  transition: opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Pop effect */
+}
+#message.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1); /* End at full size */
+}
+
+
+#next-button {
+  display: none;
+  padding: 14px 30px;
+  font-size: 1.1em;
+  font-weight: 600;
+  background-color: var(--primary-accent);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px var(--shadow-color);
+  transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+#next-button:hover {
+  background-color: var(--primary-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+#next-button:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+
+/* Utility class to hide elements with transition */
+.hidden {
+  opacity: 0 !important;
+  transform: scale(0.95) !important;
+  pointer-events: none !important;
+}
+#pieces.hidden { /* Special handling for pieces container for smooth transition */
+    min-height: 0 !important;
+    height: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    border-width: 0 !important; /* Hide border during collapse */
+    overflow: hidden !important;
+}
+
+
+#puzzle-container.completed {
+  gap: 0;
+  padding: 0;
+  border-color: transparent;
+  box-shadow: 0 6px 20px var(--completed-shadow);
+}
+#puzzle-container.completed .dropzone {
+  border: none;
+  border-radius: 0;
+}
+#puzzle-container.completed .dropzone .piece {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}

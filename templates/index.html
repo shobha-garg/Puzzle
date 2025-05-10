@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Puzzle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet">
+</head>
+<body>
+  <h1 id="title">Picture Puzzle</h1>
+  <div id="puzzle-container"></div>
+  <div id="pieces"></div>
+  <button id="next-button">Next</button>
+  <div id="message">🎉 Happy Mother's Day, Maa!</div>
+  <audio id="confetti-sound" src="{{ url_for('static', filename='../static/confetti.mp3') }}" preload="auto"></audio>
+<script src= "{{ url_for('static', filename='index.js') }}"></script>
+</body>
+</html>
