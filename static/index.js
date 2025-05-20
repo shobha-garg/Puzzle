@@ -23,7 +23,7 @@ const POINTS_PER_SECOND_REMAINING = 2;
 const puzzles = [
     { image: "../static/images/img4.jpg", rows: 3, cols: 4 },
     { image: "../static/images/img5.jpg", rows: 3, cols: 4 },
-    { image: "../static/images/img.jpg", rows: 3, cols: 4 },
+    { image: "../static/images/end.jpg", rows: 3, cols: 4 },
 ];
 
 let currentPuzzleIndex = 0;
