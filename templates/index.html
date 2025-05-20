@@ -8,11 +8,18 @@
 </head>
 <body>
   <h1 id="title">Picture Puzzle</h1>
+  <div id="score-display">Score: 0</div>
+  <div id="timer-display">03:00</div>
   <div id="puzzle-container"></div>
   <div id="pieces"></div>
   <button id="next-button">Next</button>
-  <div id="message">🎉 Happy Mother's Day, Maa!</div>
+  <div id="oops-message">Ding dong! It's wrong.</div>
+  <div id="time-up-message" class="game-message">Time up! Moving to the next puzzle...</div>
+  <div id="message">
+    🎉 Congratulations..you did it!<br>
+    Your Final Score: <span id="final-score">0</span>
+  </div>
   <audio id="confetti-sound" src="{{ url_for('static', filename='../static/confetti.mp3') }}" preload="auto"></audio>
-<script src= "{{ url_for('static', filename='index.js') }}"></script>
+<script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
 </html>
