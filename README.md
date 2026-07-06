@@ -71,11 +71,6 @@ This project was developed to explore:
 
 ---
 
-## 💡 License
-
-MIT License
----
-
 ## 📄 License
 
 This project is licensed under the MIT License.
